@@ -1,0 +1,14 @@
+ 
+cd .repo/manifests
+git checkout -b backup -t origin/mmp2_ereader_backup
+git reset --hard mmp2_ereader_20110424
+ 
+ 
+crontab中設定，每個星期 2-6 早上6點會固定跑script來更新xml以及上tag。
+ 
+但如果沒有人check in，就不會新增commit，只上tag。
+ 
+所以說，假設4.24早上6點到4.25早上6點沒有人check in的話，4.25早上6點更新完xml，發現沒有變，就不commit，而只新增一個4.25的tag指到最新的commit，
+而這個tag會跟4.24的tag指到同一個commit。
+
+這樣的好處在於，不用特別去算說要退版的日期剛好落在哪個tag上，直接指定日期就可以了。
